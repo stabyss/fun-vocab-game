@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Fun Vocabulary Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="header">
+            <div id="level-badge">Fruits</div>
+            <div id="streak-counter">🔥 Streak: 0</div>
+            <div id="progress-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <button id="restart-btn" onclick="game.restart()">🔄</button>
+        </div>
+        <div id="mascot-container">
+            <svg id="mascot" viewBox="0 0 120 120" width="120" height="120">
+                <!-- Ears -->
+                <ellipse cx="25" cy="35" rx="18" ry="22" fill="#8B4513" />
+                <ellipse cx="95" cy="35" rx="18" ry="22" fill="#8B4513" />
+                <ellipse cx="25" cy="38" rx="10" ry="12" fill="#D2691E" />
+                <ellipse cx="95" cy="38" rx="10" ry="12" fill="#D2691E" />
+                
+                <!-- Face -->
+                <circle cx="60" cy="65" r="40" fill="#CD853F" />
+                
+                <!-- Snout area -->
+                <ellipse cx="60" cy="72" rx="18" ry="14" fill="#DEB887" />
+                
+                <!-- Nose -->
+                <ellipse cx="60" cy="66" rx="8" ry="6" fill="#4A3728" />
+                <ellipse cx="58" cy="64" rx="2" ry="1.5" fill="#6B5B4F" opacity="0.5" />
+                
+                <!-- Eyes -->
+                <ellipse class="eye" cx="45" cy="52" rx="6" ry="7" fill="#2d3436" />
+                <ellipse class="eye" cx="75" cy="52" rx="6" ry="7" fill="#2d3436" />
+                <circle cx="47" cy="50" r="2.5" fill="white" />
+                <circle cx="77" cy="50" r="2.5" fill="white" />
+                
+                <!-- Mouth - changes based on expression -->
+                <path id="mascot-mouth" d="M 52 78 Q 60 86 68 78" fill="none" stroke="#4A3728" stroke-width="3" stroke-linecap="round" />
+                
+                <!-- Tongue (hidden by default, shown when happy) -->
+                <path id="mascot-tongue" d="M 55 82 Q 60 90 65 82" fill="#FF6B6B" stroke="#FF6B6B" stroke-width="0" style="opacity: 0; transition: opacity 0.3s ease;" />
+                
+                <!-- Tears (hidden by default, shown when sad) -->
+                <path id="tear-left" d="M 42 58 Q 40 65 42 70 Q 44 65 42 58" fill="#4ECDC4" opacity="0" style="transition: opacity 0.3s ease;" />
+                <path id="tear-right" d="M 72 58 Q 70 65 72 70 Q 74 65 72 58" fill="#4ECDC4" opacity="0" style="transition: opacity 0.3s ease;" />
+                
+                <!-- Paws at bottom -->
+                <ellipse cx="35" cy="105" rx="10" ry="8" fill="#CD853F" />
+                <ellipse cx="85" cy="105" rx="10" ry="8" fill="#CD853F" />
+            </svg>
+        </div>
+        <div id="game-area">
+            <button id="listen-btn" onclick="game.repeatCurrentWord()">🔊 Listen</button>
+            <button id="next-btn" onclick="game.nextWord()">Next ➡️</button>
+            <div id="cards-container"></div>
+        </div>
+    </div>
+
+    <div id="start-overlay">
+        <div style="font-size: 80px;">🎮</div>
+        <button id="start-btn" onclick="game.start()">START GAME</button>
+    </div>
+
+    <div id="celebration" class="hidden">
+        <div class="celebration-text">🎉 Wonderful Job! 🎉</div>
+        <button id="continue-btn" onclick="game.nextLevel()">Continue</button>
+    </div>
+
+    <div id="feedback"></div>
+    <div id="flash-container"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>
